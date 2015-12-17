@@ -9,7 +9,4 @@ my $filename = $ENV{'PATH_TRANSLATED'};
 my $fh;
 open $fh, '<', $filename;
 
-my @lines = <$fh>;
-@lines = map {$w = $_; $w =~ s/(https?[^\s]*)/<a href="$1">$1<\/a>/g; $w} @lines;
-
-print join("<br>",@lines);
+print join("<br>", (map {$w = $_; $w =~ s/(https?[^\s]*)/<a href="$1">$1<\/a>/g; $w} <$fh>));
